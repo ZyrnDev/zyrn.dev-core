@@ -1,0 +1,46 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: darkslategrey;
+    color: whitesmoke;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.button {
+    background-color: rgb(230, 230, 230);
+    color: black;
+    border: 2px solid #4CAF50; /* Green */
+    border-radius: 5px;
+    padding: 0.5em 1em;
+}
+
+.button:hover {
+    background-color: #cecece;
+}
+
+div.body {
+    padding: 1em;
+}
+
+#main-menu {
+    background-color: rgb(35, 65, 65);
+    padding: 0.5em;
+}
+
+#main-menu div {
+    display: inline-block;
+    padding: 1em;
+}
+
+a:link {
+    color: rgb(34, 203, 255);
+}
+/* #main-menu div a:visited {
+    color: rebeccapurple;
+}
+#main-menu a:hover {
+    color: greenyellow;
+}
+#main-menu a:active {
+    color: gray;
+} */
