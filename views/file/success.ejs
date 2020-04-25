@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <% include ../partials/head %> 
+</head>
+
+<body>
+
+<% include ../partials/menu %> 
+
+<div class="body">    
+  <h1>File uploaded successfully!</h1>
+  Link (click to download): <a id="link" href="uploads/<%= file.name %>" download>https://zyrn.dev/file/uploads/<%= file.name %></a>
+</div>
+
+</body>
+
+<% include ../partials/script %>
+
+</html>

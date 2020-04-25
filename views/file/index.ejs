@@ -10,7 +10,12 @@
 <% include ../partials/menu %> 
 
 <div class="body">    
-  <h2><%= page.title %></h1>
+  <h2><%= page.title %></h2>
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="document" />
+    <input type="submit" value="Upload" />
+  </form>
+  <a href="/file/uploads/"><h2>View All Files</h2></a>
 </div>
 
 </body>

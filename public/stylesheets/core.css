@@ -6,7 +6,7 @@ body {
     font-family: 'Helvetica', sans-serif;
 }
 
-.button {
+input, .button {
     background-color: rgb(230, 230, 230);
     color: black;
     border: 2px solid #4CAF50; /* Green */
