@@ -1,0 +1,21 @@
+{
+  "name": "zyrn.dev-website",
+  "version": "1.0.0",
+  "description": "Consolidated Version of the Zyrn.Dev website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mitchell Lee (Zyrn.Dev)",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^2.7.2",
+    "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "mysql": "^2.18.1",
+    "serve-index": "^1.9.1",
+    "serve-static": "^1.14.1",
+    "xml2js": "^0.4.23"
+  }
+}
