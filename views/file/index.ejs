@@ -2,24 +2,47 @@
 <html lang="en">
 
 <head>
- <% include ../partials/head %> 
+ <% include ../partials/head %>
+ <link rel="stylesheet" type="text/css" href="/stylesheets/file-server.css">
 </head>
 
 <body>
 
 <% include ../partials/menu %> 
 
-<div class="body">    
-  <h2><%= page.title %></h2>
-  <form method="POST" enctype="multipart/form-data">
-    <input type="file" name="document" />
-    <input type="submit" value="Upload" />
-  </form>
-  <a href="/file/uploads/"><h2>View All Files</h2></a>
+<div class="body">
+  <div class="container-fluid body">
+    <div class="row">
+        <div class="col-md"></div>  
+        <div class="col-md-4">
+          <h2><%= page.title %></h2>
+          <form method="POST" enctype="multipart/form-data">
+            <div>
+              <label id="lbl-upload-file"for="upload-file">Choose File</label>
+              <input id="upload-file" type="file" name="document" />
+              <input type="submit" value="Upload File" class="button"/>
+            </div>
+          </form>
+          <a href="/file/uploads/" class="nice-link">View All Files</a>
+        </div>  
+      <div class="col-md"></div>  
+    </div>  
+  </div>    
+  
 </div>
 
 </body>
 
 <% include ../partials/script %>
+<script>
+  $("#upload-file").change(function () {
+    // alert('Selected file: ' + this.value.replace(/.*[\/\\]/, ''));
+    if (this.value){
+      $("#lbl-upload-file").text(this.value.replace(/.*[\/\\]/, ''));
+    } else {
+      $("#lbl-upload-file").text("Choose File");
+    }
+  });
+</script>
 
 </html>

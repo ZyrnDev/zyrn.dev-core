@@ -1,5 +1,5 @@
-<header>
-  <nav id="main-menu" class="menu">
+<!-- <header>
+  <nav id="main-menu">
     <a href="/" class="button">
       Home
     </a>
@@ -16,30 +16,33 @@
       API Error Page
     </a>
   </nav>
-</header>
+</header> -->
+<% let sites = [
+  { name: "Home", path: "/" },
+  { name: "API", path: "/api" },
+  { name: "Files", path: "/file" },
+  { name: "Error", path: "/error" },
+  { name: "API Error", path: "/api/error" },
+];%>
 
-<!-- <a href="/test/">
-    <div class="menu button">
-      Home
-    </div>
-  </a>
-  <a href="/test/api">
-    <div class="menu button">
-    API
-    </div>
-  </a>
-  <a href="/test/file">
-    <div class="menu button">
-      Files
-    </div>
-  </a>
-  <a href="/test/error">
-    <div class="menu button">
-      Error Page
-    </div>
-  </a>
-  <a href="/test/api/error">
-    <div class="menu button">
-      API Error Page
-    </div>
-  </a> -->
+<header>
+  <nav class="navbar navbar-expand-lg" id="main-menu">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <svg class="bi bi-list" width="3ch" height="3ch" viewBox="0 0 16 16" fill="whitesmoke" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 013 11h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 3h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+          </svg>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+          <% for (const site of sites) {%>
+          <li class="nav-item">
+            <a class="nav-link tb-nav-item button" href="<%= site.path%>"><%= site.name %></a>
+          </li>
+          <% } %>
+          </ul>
+      </div>
+
+  </nav>
+
+</header>

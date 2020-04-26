@@ -6,13 +6,14 @@ body {
     font-family: 'Helvetica', sans-serif;
 }
 
-input, button, .button {
+.button {
+    text-transform: uppercase;
     margin: 0.5em;
     padding: 0.5em 1em;
     transition-duration: 0.4s;
     background-color: rgb(47, 79, 79);
     color: white;
-    border: 2px solid whitesmoke;
+    border: 1px solid whitesmoke;
     border-radius: 5px;
     text-decoration: none;
 }
@@ -21,30 +22,28 @@ input, button, .button {
     padding: 1em;
 }
 
-input:hover, button:hover, .button:hover {
+.button:hover {
     background-color: rgba(245, 245, 245, 0.4);
     /* color: black; */
 }
 
 header {
     background-color: rgb(35, 65, 65);
-    padding: 1em;
+    /* padding: 1em; */
 }
-#main-menu a {
+
+.nav-link {
+    text-align: center;
     background-color: rgba(0, 0, 0, 0);
-    color: white;
+    color: white !important;
     text-decoration: none;
     border: none;
 }
-#main-menu a:hover  {
+
+.nav-link:hover {
     background-color: rgba(245, 245, 245, 0.4);
 }
 
-/* #main-menu div {
-    display: inline-block;
-    padding: 1em;
-} */
-
-a:link {
-    color: rgb(34, 203, 255);
+.nice-link {
+    color: rgb(34, 203, 255) !important;
 }

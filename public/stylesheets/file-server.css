@@ -1,0 +1,15 @@
+label {
+    cursor: pointer;
+}
+
+#upload-file {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+#lbl-upload-file:hover {
+    transition: 0.25s;
+    text-decoration: underline;
+    transform: scale(1.05);
+}

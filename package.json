@@ -4,6 +4,7 @@
   "description": "Consolidated Version of the Zyrn.Dev website",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mitchell Lee (Zyrn.Dev)",
