@@ -31,6 +31,16 @@ header {
     background-color: rgb(35, 65, 65);
     /* padding: 1em; */
 }
+footer {
+    position: fixed;
+    padding: 1em;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(35, 65, 65);
+    color: whitesmoke;
+    text-align: center;
+}
 
 .nav-link {
     text-align: center;
