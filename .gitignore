@@ -14,3 +14,8 @@ node_modules/
 # dotenv environment variables file
 .env
 settings.json
+package-lock.json
+
+# uploads
+routes/file/uploads/*
+!routes/file/uploads/.gitkeep
