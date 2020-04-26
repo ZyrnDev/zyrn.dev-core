@@ -17,6 +17,10 @@ input, button, .button {
     text-decoration: none;
 }
 
+.body {
+    padding: 1em;
+}
+
 input:hover, button:hover, .button:hover {
     background-color: rgba(245, 245, 245, 0.4);
     /* color: black; */
