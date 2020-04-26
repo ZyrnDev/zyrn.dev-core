@@ -1,46 +1,46 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-color: darkslategrey;
+    background-color: rgb(47, 79, 79);
     color: whitesmoke;
     font-family: 'Helvetica', sans-serif;
 }
 
-input, .button {
-    background-color: rgb(230, 230, 230);
-    color: black;
-    border: 2px solid #4CAF50; /* Green */
-    border-radius: 5px;
+input, button, .button {
+    margin: 0.5em;
     padding: 0.5em 1em;
+    transition-duration: 0.4s;
+    background-color: rgb(47, 79, 79);
+    color: white;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-.button:hover {
-    background-color: #cecece;
+input:hover, button:hover, .button:hover {
+    background-color: rgba(245, 245, 245, 0.4);
+    /* color: black; */
 }
 
-div.body {
+header {
+    background-color: rgb(35, 65, 65);
     padding: 1em;
 }
-
-#main-menu {
-    background-color: rgb(35, 65, 65);
-    padding: 0.5em;
+#main-menu a {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    text-decoration: none;
+    border: none;
+}
+#main-menu a:hover  {
+    background-color: rgba(245, 245, 245, 0.4);
 }
 
-#main-menu div {
+/* #main-menu div {
     display: inline-block;
     padding: 1em;
-}
+} */
 
 a:link {
     color: rgb(34, 203, 255);
 }
-/* #main-menu div a:visited {
-    color: rebeccapurple;
-}
-#main-menu a:hover {
-    color: greenyellow;
-}
-#main-menu a:active {
-    color: gray;
-} */

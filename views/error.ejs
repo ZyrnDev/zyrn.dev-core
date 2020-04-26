@@ -7,16 +7,22 @@
 
 <body>
   <% include partials/menu %> 
-  <div class="body">    
-    <h1>Error: <%= page.title %></h1>
-    <div>
-      <% let body = "Hi Support,\n\nI encounted an issue while browsing zyrn.dev.\n\nWhat did you do: \nWhat happened: \nWhat should have happened: \n\nThe technical details are:\n" + JSON.stringify(error) + "\n"; %>
-      <% subject = encodeURIComponent("Issue on Zyrn.Dev"); %>
-      <% body = encodeURIComponent(body); %>
-      <p>If you did believe something is wrong contact us at: <a href="mailto:support@zyrn.dev?subject=<%= subject %>&body=<%= body %>" target="_top">support@zyrn.dev</a></p>
-      <p>Otherwise you can reload this page or go to the previous page.</p>
-      <button class="button" onclick="window.history.back()">Go Back</button>
-    </div>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md"></div>  
+        <div class="col-md-4">
+          <h1>Error: <%= page.title %></h1>
+          <div>
+            <% let body = "Hi Support,\n\nI encounted an issue while browsing zyrn.dev.\n\nWhat did you do: \nWhat happened: \nWhat should have happened: \n\nThe technical details are:\n" + JSON.stringify(error) + "\n"; %>
+            <% subject = encodeURIComponent("Issue on Zyrn.Dev"); %>
+            <% body = encodeURIComponent(body); %>
+            <p>If you did believe something is wrong contact us at: <a href="mailto:support@zyrn.dev?subject=<%= subject %>&body=<%= body %>" target="_top">support@zyrn.dev</a></p>
+            <p>Otherwise you can reload this page or go to the previous page.</p>
+            <button class="button" onclick="window.history.back()">Go Back</button>
+          </div>
+        </div>  
+      <div class="col-md"></div>  
+    </div>  
   </div>
 </body>
 
