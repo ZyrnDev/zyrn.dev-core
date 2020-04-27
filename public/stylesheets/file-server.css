@@ -8,8 +8,15 @@ label {
     z-index: -1;
 }
 
+#lbl-upload-file {
+    transition: 0.5s;
+}
+
 #lbl-upload-file:hover {
     transition: 0.25s;
     text-decoration: underline;
-    transform: scale(1.05);
+    transform: perspective(1px) translateZ(0);
+    transform: scale(1.095);
+    will-change: transform;
+    backface-visibility: hidden;
 }
