@@ -14,7 +14,7 @@ async function getAccount(id) {
 }
 
 /* GET users listing. */
-router.get('/GET', async (req, res) => {
+router.get('/', async (req, res) => {
     let accounts = await database.getAccounts();
     for (let i = 0; i < accounts.length; i++) {
         accounts[i] = {id: accounts[i].id, guid: accounts[i].guid};
@@ -22,7 +22,7 @@ router.get('/GET', async (req, res) => {
     res.json(accounts);
 });
 
-router.get('/GET/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     let account = await getAccount(req.params.id);
     if (account === undefined) {
         res.json([]);
@@ -32,7 +32,7 @@ router.get('/GET/:id', async (req, res) => {
     res.json([{id: account.id, guid: account.guid}]);
 });
 
-router.post('/UPDATE', async (req, res) => {
+router.put('/', async (req, res) => {
 	if (req.body.password == '') {
       	await database.updateAccount_NoPassword({id: req.body.id, guid: req.body.guid});
   	} else{
@@ -44,7 +44,7 @@ router.post('/UPDATE', async (req, res) => {
     res.json([account]);
 });
 
-router.post('/ADD', async (req, res) => {
+router.post('/', async (req, res) => {
     let id = await database.addAccount({id: req.body.id, guid: req.body.guid, password: req.body.guid});
     if (id === undefined) { res.json([]); return; }
     let account = await getAccount(id);
@@ -53,7 +53,7 @@ router.post('/ADD', async (req, res) => {
     // res.json(req.body);
 });
 
-router.post('/DELETE/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     res.json(await database.deleteAccount(req.params.id));
 });
 

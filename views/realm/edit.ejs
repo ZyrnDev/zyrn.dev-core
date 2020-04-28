@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <% include ../partials/head %>
+</head>
+
+<body>
+
+<% include ../partials/menu %> 
+
+<div class="body">
+  <div class="container-fluid body">
+    <div class="row">
+      <div class="col-md"></div>  
+      <div class="col-md-4">
+        <h2><%= page.title %></h2>
+          <h3>Edit Account</h3><br>          
+          <div id="account">
+              <form onsubmit="myFunction()">
+                  <label>ID:</label> 1<br>
+                  <input type="hidden" name="id" value="1">
+                  <label>Email:</label><input type="text" name="guid" value="mitchell@leenet.net.au"><br>
+                  <label>Password:</label><input type="text" name="password" value=""><br>
+                  <input type="submit" value="Submit">
+              </form>
+              <form onsubmit="myFunction()">
+                  <input type="hidden" name="id" value="1">
+                  <input type="submit" value="Delete">
+              </form>
+          </div>
+          
+      </div>  
+      <div class="col-md"></div>  
+    </div>  
+  </div>    
+  
+</div>
+
+</body>
+
+<% include ../partials/script %>
+
+</html>

@@ -139,7 +139,7 @@ function addRefresh(refresh) {
 
 function getRecentRefresh() {
     return new Promise(function(resolve, reject) {
-    	let columns = "refreshs.ID as 'RefreshID', accounts.ID as 'AccountID', GUID, status, time, message"
+    	let columns = "refreshs.ID as 'refreshID', accounts.ID as 'accountID', GUID as 'guid', status, time, message"
         let selectQuery = 'SELECT ' + columns + ' FROM refreshs INNER JOIN accounts ON accounts.ID = refreshs.accountID WHERE refreshs.ID in ( SELECT MAX(r.ID) FROM refreshs AS r GROUP BY r.accountID) AND accounts.active = 1 ORDER BY status, accountID'
         let query = mysql.format(selectQuery);
 
