@@ -32,11 +32,11 @@ router.get('/:id', async (req, res) => {
     res.json([{id: account.id, guid: account.guid}]);
 });
 
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
 	if (req.body.password == '') {
-      	await database.updateAccount_NoPassword({id: req.body.id, guid: req.body.guid});
+      	await database.updateAccount_NoPassword({id: req.params.id, guid: req.body.guid});
   	} else{
-      	await database.updateAccount({id: req.body.id, guid: req.body.guid, password: req.body.password});
+      	await database.updateAccount({id: req.params.id, guid: req.body.guid, password: req.body.password});
   	}
 
     let account = await getAccount(req.body.id);
@@ -45,11 +45,11 @@ router.put('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    let id = await database.addAccount({id: req.body.id, guid: req.body.guid, password: req.body.guid});
-    if (id === undefined) { res.json([]); return; }
+    let id = await database.addAccount({ guid: req.body.guid, password: req.body.password });
+    if (id === undefined) { res.json({}); return; }
     let account = await getAccount(id);
     if (account === undefined) { res.json([]); return; }
-    res.json([account])
+    res.json(account)
     // res.json(req.body);
 });
 

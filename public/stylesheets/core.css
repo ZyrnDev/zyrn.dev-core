@@ -7,7 +7,6 @@ body {
 }
 
 .button {
-    text-transform: uppercase;
     margin: 0.5em;
     padding: 0.5em 1em;
     transition-duration: 0.4s;
@@ -18,18 +17,18 @@ body {
     text-decoration: none;
 }
 
+.button:hover {
+    background-color: rgba(120, 137, 137);
+}
+
 .body {
     padding: 1em;
 }
 
-.button:hover {
-    background-color: rgba(245, 245, 245, 0.4);
-    /* color: black; */
-}
 
 header {
+    text-transform: uppercase;
     background-color: rgb(35, 65, 65);
-    /* padding: 1em; */
 }
 
 .nav-link {
@@ -46,4 +45,48 @@ header {
 
 .nice-link {
     color: rgb(34, 203, 255) !important;
+}
+
+table {
+    text-align: center;
+    margin: auto;
+    color: white;
+    background-color: white;
+}
+
+tr {
+    background-color: rgba(47, 79, 79, 1);
+}
+
+td {
+    transition-duration: 0.4s;
+    border: 2px solid whitesmoke;
+    padding: 10px;
+}
+
+th {
+    padding: 1em;
+    background-color: rgb(35, 65, 65);
+    border: 2px solid whitesmoke;
+}
+
+tr:nth-child(even){
+    background-color: rgba(47, 79, 79, 0.90);
+}
+
+tr:hover {
+    background-color: rgba(47, 79, 79, 0.65);
+}
+
+.failure {
+    background-color: rgba(183, 43, 33, 1) !important;
+}
+.failure:hover {
+    background-color: rgba(183, 43, 33, 0.8) !important;
+}
+.failure td .button {
+    background-color: rgba(255, 255, 255, 0.4)
+}
+.failure td .button:hover {
+    background-color: rgba(255, 255, 255, 0);
 }

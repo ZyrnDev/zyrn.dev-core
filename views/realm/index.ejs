@@ -20,36 +20,44 @@
         <div class="col-md"></div>  
         <div class="col-md-4">
           <h2><%= page.title %></h2>
-            <form  onsubmit="myFunction()" id="account_form">
-              <div><label>Email</label><input type="text" name="guid"></div>
-              <div><label>Password</label><input type="text" name="password"></div>
-              <input type="submit" value="Add">
-            </form>
-          
+          <form id="add-form">
+            <div><label>Email</label><input type="text" name="guid"></div>
+            <div><label>Password</label><input type="text" name="password"></div>
+            <input type="submit" value="Add">
+          </form>
+        </div>
       <div class="col-md"></div>  
     </div>  
   </div>
-  
-  <table id="accounts_table">
-    <tbody>
-      <tr>
-        <th>ID</th>
-        <th>Email</th>
-        <th>Name/Message</th>
-        <th>Last Attempt</th>
-        <th>Status</th>
-        <th>Tools</th>
-      </tr>
-    </tbody>
-  </table>
+
+  <div style="overflow-x:auto;"></div>
+    <table id="accounts_table">
+      <tbody>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Name/Message</th>
+          <th>Last Attempt</th>
+          <th>Status</th>
+          <th>Tools</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <script>
-    function makeAccountMenu(id) {
-      return '<button onclick="window.location.href = \'accounts/'+id+'\';">Manage</button>' +
-        '<button onclick="refreshAccount('+id+')">Refresh</button>';
+    function makeAccountMenu(account) {
+      return '<button onclick="window.location.href = \'accounts/'+account.accountID+'\';" class="button">Manage</button>' +
+        '<button onclick="refreshAccount('+account.accountID+')" class="button">Refresh</button>';
     }
 
     var accounts = new Table("#accounts_table", function (row) {
-      return "<tr><td>"+row.accountID+"</td><td>"+row.guid+"</td><td>"+row.message+"</td><td>"+time_ago(row.time)+"</td><td>"+row.status+"</td><td>"+makeAccountMenu(row.accountID)+"</td></tr>";
+      let classes = "";
+      if (row.status == "Success") {
+        classes = classes + "success";
+      } else {
+        classes = classes + "failure";
+      }
+      return '<tr class="' + classes + '"><td>'+row.accountID+"</td><td>"+row.guid+"</td><td>"+row.message+"</td><td>"+time_ago(row.time)+"</td><td>"+row.status+"</td><td>"+makeAccountMenu(row)+"</td></tr>";
     });
 
     $.get("/api/realm/refresh/recent", function(data) {
@@ -61,7 +69,6 @@
 
     function refreshAccount(id) {
       jQuery.get("/api/realm/refresh/"+id, function(data) {
-        console.log(data[0]);
         accounts.replace(data[0], function (row) {
           return row.accountID == id;
         });
@@ -69,9 +76,29 @@
       , "json")
       .fail(function(xhr, message, error) {
         console.log("Something went wrong while trying to refresh the account #" + id + "...");
-    });
-    
+      });
     }
+
+    $("#add-form").submit(function (event) {
+      event.preventDefault();
+      jQuery.ajax({
+        url: "https://zyrn.dev/api/realm/accounts",
+        method: "POST",
+        data: { guid: $('#add-form input[name="guid"]').val(), password: $('#add-form input[name="password"]').val()  },
+        dataType: "json"
+      }).done(async function(account) {
+          await sleep(5000);
+          jQuery.get("/api/realm/refresh/"+account.id, function(refresh) {
+            accounts.add(refresh[0], 0);
+          }
+          , "json")
+          .fail(function(xhr, message, error) {
+            console.log("Something went wrong while trying to refresh the account #" + account.id + "...");
+          });
+      }).fail(function(xhr, message, error) {
+        console.log("Something went wrong while trying to add an account...");
+      });
+    });
   </script>
   
 </div>

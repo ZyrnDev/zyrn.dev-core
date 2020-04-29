@@ -52,3 +52,7 @@ function time_ago(time) {
     }
     return time;
 }
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
