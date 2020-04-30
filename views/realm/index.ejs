@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <% include ../partials/head %>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script>const jQuery = $;//I don't know why but I seem to be losing my jQuery object somehow</script>
+ <script src="/javascript/table.js"></script>
+ <script src="/javascript/time.js"></script>
+ <script src="/javascript/util.js"></script>
+</head>
+
+<body>
+
+<% include ../partials/menu %> 
+
+<div class="body">
+  <div class="container-fluid body">
+    <div class="row">
+        <div class="col-md"></div>  
+        <div class="col-md-4">
+          <h2><%= page.title %></h2>
+          <form id="add-form">
+            <div><label>Email</label><input type="text" name="guid"></div>
+            <div><label>Password</label><input type="text" name="password"></div>
+            <input type="submit" value="Add">
+          </form>
+        </div>
+      <div class="col-md"></div>  
+    </div>  
+  </div>
+
+  <div style="overflow-x:auto;"></div>
+    <table id="accounts_table">
+      <tbody>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Name/Message</th>
+          <th>Last Attempt</th>
+          <th>Status</th>
+          <th>Tools</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    function makeAccountMenu(account) {
+      return '<button onclick="window.location.href = \'accounts/'+account.accountID+'\';" class="button">Manage</button>' +
+        '<button onclick="refreshAccount('+account.accountID+')" class="button">Refresh</button>';
+    }
+
+    var accounts = new Table("#accounts_table", function (row) {
+      let classes = "";
+      if (row.status == "Success") {
+        classes = classes + "success";
+      } else {
+        classes = classes + "failure";
+      }
+      return '<tr class="' + classes + '"><td>'+row.accountID+"</td><td>"+row.guid+"</td><td>"+row.message+"</td><td>"+time_ago(row.time)+"</td><td>"+row.status+"</td><td>"+makeAccountMenu(row)+"</td></tr>";
+    });
+
+    $.get("/api/realm/refresh/recent", function(data) {
+      accounts.populate(data);
+    }, "json")
+    .fail(function(xhr, message, error) {
+      accounts.error("Something went wrong while trying to load the accounts...");
+    });
+
+    function refreshAccount(id) {
+      jQuery.get("/api/realm/refresh/"+id, function(data) {
+        accounts.replace(data[0], function (row) {
+          return row.accountID == id;
+        });
+      }
+      , "json")
+      .fail(function(xhr, message, error) {
+        console.log("Something went wrong while trying to refresh the account #" + id + "...");
+      });
+    }
+
+    $("#add-form").submit(function (event) {
+      event.preventDefault();
+      jQuery.ajax({
+        url: "https://zyrn.dev/api/realm/accounts",
+        method: "POST",
+        data: { guid: $('#add-form input[name="guid"]').val(), password: $('#add-form input[name="password"]').val()  },
+        dataType: "json"
+      }).done(async function(account) {
+          await sleep(5000);
+          jQuery.get("/api/realm/refresh/"+account.id, function(refresh) {
+            accounts.add(refresh[0], 0);
+          }
+          , "json")
+          .fail(function(xhr, message, error) {
+            console.log("Something went wrong while trying to refresh the account #" + account.id + "...");
+          });
+      }).fail(function(xhr, message, error) {
+        console.log("Something went wrong while trying to add an account...");
+      });
+    });
+  </script>
+  
+</div>
+
+</body>
+
+<% include ../partials/script %>
+
+</html>

@@ -49,19 +49,19 @@ router.get('/:id', async (req, res) => {
             parser.parseString(body, function (err, result) {
                 //console.log(result);
                 try { 
-                    results.push({accountID: response.request.headers.ID, status: 'Success', guid: response.request.headers.GUID, name: result.Chars.Account[0].Name[0]});
+                    results.push({accountID: response.request.headers.ID, status: 'Success', guid: response.request.headers.GUID, message: result.Chars.Account[0].Name[0], time: new Date().toISOString()});
                 } catch(err) {
                     //console.log(error);
-                    results.push({accountID: response.request.headers.ID, status: 'Fail', guid: response.request.headers.GUID, name: body});
+                    results.push({accountID: response.request.headers.ID, status: 'Fail', guid: response.request.headers.GUID, message: body, time: new Date().toISOString()});
                 }
             });
         } else {
-            results.push({accountID: response.request.headers.ID, status: ('Fail: ' + response.statusCode), guid: response.request.headers.GUID, name: body});
+            results.push({accountID: response.request.headers.ID, status: ('Fail: ' + response.statusCode), guid: response.request.headers.GUID, message: body, time: new Date().toISOString()});
         }
 
         res.json(results);
         for (let index = 0; index < results.length; index++) {
-            await database.addRefresh({id: results[index].accountID, status: results[index].status, message: results[index].name});
+            await database.addRefresh({id: results[index].accountID, status: results[index].status, message: results[index].message});
         }
     }
 
