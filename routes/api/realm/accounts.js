@@ -41,7 +41,10 @@ router.put('/:id', async (req, res) => {
 
     let account = await getAccount(req.body.id);
     if (!account) { res.json([]); return; }
-    res.json([account]);
+    if (req.body.password == '') {
+        account.password = "";
+    }
+    res.json(account);
 });
 
 router.post('/', async (req, res) => {
@@ -49,8 +52,7 @@ router.post('/', async (req, res) => {
     if (id === undefined) { res.json({}); return; }
     let account = await getAccount(id);
     if (account === undefined) { res.json([]); return; }
-    res.json(account)
-    // res.json(req.body);
+    res.json(account);
 });
 
 router.delete('/:id', async (req, res) => {
