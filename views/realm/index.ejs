@@ -8,6 +8,30 @@
  <script src="/javascript/table.js"></script>
  <script src="/javascript/time.js"></script>
  <script src="/javascript/util.js"></script>
+ <style>
+  input[type=text] {
+    width: 100%;
+  }
+  #add-form {
+    padding: 1em;
+    text-align: center;
+  }
+  label {
+    font-size: 1.5em;
+  }
+  .failure {
+    background-color: rgba(183, 43, 33, 1) !important;
+  }
+  .failure:hover {
+    background-color: rgba(183, 43, 33, 0.8) !important;
+  }
+  .failure td .button {
+    background-color: rgba(255, 255, 255, 0.4)
+  }
+  .failure td .button:hover {
+    background-color: rgba(183, 43, 33, 1);
+  }
+ </style>
 </head>
 
 <body>
@@ -21,8 +45,8 @@
         <div class="col-md-4">
           <h2><%= page.title %></h2>
           <form id="add-form">
-            <div><label>Email</label><input type="text" name="guid"></div>
-            <div><label>Password</label><input type="text" name="password"></div>
+            <div><label>Email</label><input type="text" name="guid" placeholder="Email address or Steam ID"></div>
+            <div><label>Password</label><input type="text" name="password"  placeholder="Password"></div>
             <input type="submit" value="Add" class="button">
           </form>
         </div>
