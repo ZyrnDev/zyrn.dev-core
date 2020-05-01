@@ -23,10 +23,16 @@ router.post('/', (req, res) => {
    form.hash = 'sha1';
    form.parse(req);
    form.on('fileBegin', (name, file) => {
-        file.path = form.uploadDir + file.name;
+        if (file.name) {
+            file.path = form.uploadDir + file.name;
+        }
     });
     form.on('file', (name, file) => {
-        res.render("file/success", { page: { title: "Success" }, file: file });     
+        if (file.name) {
+            res.render("file/success", { page: { title: "Success" }, file: file });     
+        } else  {
+            res.render("file/failure", { page: { title: "Failure" } });
+        }
     });
     form.on('error', function(err) {
         console.error('Something went wrong in uploading file:', err);

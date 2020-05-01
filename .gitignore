@@ -17,5 +17,5 @@ settings.json
 package-lock.json
 
 # uploads
-uploads/*
-!uploads/.gitkeep
+public/uploads/*
+!public/uploads/.gitkeep
