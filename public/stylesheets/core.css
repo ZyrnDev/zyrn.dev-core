@@ -17,6 +17,23 @@ body {
     text-decoration: none;
 }
 
+input[type=text] {
+    padding: 0.3em;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    background-color: rgb(202, 202, 202);
+    margin: 3px;
+}
+
+input[type=text]:focus {
+    margin: 2px;
+    margin-bottom: 0px;
+    border: 1px solid rgb(0, 195, 255);
+    border-bottom: 3px solid rgb(0, 170, 0);
+    background-color: white;
+}
+
 .button:hover {
     background-color: rgba(120, 137, 137);
 }
@@ -76,17 +93,4 @@ tr:nth-child(even){
 
 tr:hover {
     background-color: rgba(47, 79, 79, 0.65);
-}
-
-.failure {
-    background-color: rgba(183, 43, 33, 1) !important;
-}
-.failure:hover {
-    background-color: rgba(183, 43, 33, 0.8) !important;
-}
-.failure td .button {
-    background-color: rgba(255, 255, 255, 0.4)
-}
-.failure td .button:hover {
-    background-color: rgba(183, 43, 33, 1);
 }

@@ -2,9 +2,21 @@
 <html lang="en">
 
 <head>
- <% include ../partials/head %>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- <script>const jQuery = $;//I don't know why but I seem to be losing my jQuery object somehow</script>
+  <% include ../partials/head %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>const jQuery = $;//I don't know why but I seem to be losing my jQuery object somehow</script>
+  <style>
+    input[type=text] {
+      width: 100%;
+    }
+    #account {
+      padding: 1em;
+      text-align: center;
+    }
+    label {
+      font-size: 1.5em;
+    }
+  </style>
 </head>
 
 <body>
@@ -19,12 +31,19 @@
         <h2><%= page.title %></h2>        
         <div id="account">
           <form id="edit-form">
-              <label>ID:</label> <%= account.id %>
-              <label>Email:</label><input type="text" name="guid" value="<%= account.guid %>">
-              <label>Password:</label><input type="text" name="password" value="">
-              <input type="submit" value="Save">
+              <h2>ID: <%= account.id %></h2>
+              <label>Email:</label>
+              <br>
+              <input type="text" name="guid" placeholder="Email address or Steam ID" value="<%= account.guid %>">
+              <br>
+              <br>
+              <label>Password:</label>
+              <br>
+              <input type="text" name="password" placeholder="Only use this if the password has changed">
+              <br>
+              <input type="submit" value="Save" class="button">
+              <button id="delete-button" class="button">Delete</button>
           </form>
-          <button id="delete-button">Delete</button>
         </div>
       </div>  
       <div class="col-md"></div>  

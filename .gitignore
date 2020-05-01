@@ -17,5 +17,5 @@ settings.json
 package-lock.json
 
 # uploads
-routes/file/uploads/*
-!routes/file/uploads/.gitkeep
+uploads/*
+!uploads/.gitkeep
