@@ -20,11 +20,14 @@
         <div id="account">
           <form id="edit-form">
               <label>ID:</label> <%= account.id %>
+              <br>
               <label>Email:</label><input type="text" name="guid" value="<%= account.guid %>">
+              <br>
               <label>Password:</label><input type="text" name="password" value="">
-              <input type="submit" value="Save">
+              <br>
+              <input type="submit" value="Save" class="button">
+              <button id="delete-button" class="button">Delete</button>
           </form>
-          <button id="delete-button">Delete</button>
         </div>
       </div>  
       <div class="col-md"></div>  
