@@ -48,15 +48,20 @@ header {
     text-transform: uppercase;
     background-color: rgb(35, 65, 65);
 }
+
 footer {
     position: fixed;
+    background-color: rgb(35, 65, 65);
+    color: whitesmoke;
+    text-align: center;
+}
+
+.footer {
+    margin-top: 1em;
     padding: 1em;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgb(35, 65, 65);
-    color: whitesmoke;
-    text-align: center;
 }
 
 .nav-link {
