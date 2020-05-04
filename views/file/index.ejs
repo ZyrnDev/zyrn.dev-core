@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
- <% include ../partials/head %>
+ <%- include('../partials/head'); -%>
  <link rel="stylesheet" type="text/css" href="/stylesheets/file-server.css">
  <style>
    p.message {
@@ -17,7 +17,7 @@
 
 <body>
 
-<% include ../partials/menu %> 
+<%- include('../partials/menu'); -%> 
 
 <div class="body">
   <div class="container-fluid body">
@@ -39,11 +39,11 @@
   </div>    
 </div>
 
-<% include ../partials/footer %>
+<%- include('../partials/footer'); -%>
 
 </body>
 
-<% include ../partials/script %>
+<%- include('../partials/script'); -%>
 <script>
   $("#upload-file").change(function () {
     // alert('Selected file: ' + this.value.replace(/.*[\/\\]/, ''));

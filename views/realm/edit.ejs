@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <% include ../partials/head %>
+  <%- include('../partials/head'); -%>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>const jQuery = $;//I don't know why but I seem to be losing my jQuery object somehow</script>
   <style>
@@ -21,7 +21,7 @@
 
 <body>
 
-<% include ../partials/menu %> 
+<%- include('../partials/menu'); -%> 
 
 <div class="body">
   <div class="container-fluid body">
@@ -50,7 +50,7 @@
     </div>  
   </div>
 
-  <% include ../partials/footer %>
+  <%- include('../partials/footer'); -%>
   
 </div>
 
@@ -73,7 +73,7 @@
   });
 
   $("#delete-button").click(function (event) {
-    let id = <%= account.id %>
+    let id = <%= account.id %>;
     jQuery.ajax({
       url: "https://zyrn.dev/api/realm/accounts/" + id,
       method: "DELETE",
@@ -86,6 +86,6 @@
   });
 </script>
 
-<% include ../partials/script %>
+<%- include('../partials/script'); -%>
 
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
- <% include ../partials/head %>
+ <%- include('../partials/head'); -%>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <script>const jQuery = $;//I don't know why but I seem to be losing my jQuery object somehow</script>
  <script src="/javascript/table.js"></script>
@@ -36,7 +36,7 @@
 
 <body>
 
-<% include ../partials/menu %> 
+<%- include('../partials/menu'); -%> 
 
 <div class="body">
   <div class="container-fluid body">
@@ -127,10 +127,10 @@
   
 </div>
 
-<% include ../partials/footer %>
+<%- include('../partials/footer'); -%>
 
 </body>
 
-<% include ../partials/script %>
+<%- include('../partials/script'); -%>
 
 </html>

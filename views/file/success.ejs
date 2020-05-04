@@ -2,23 +2,23 @@
 <html lang="en">
 
 <head>
- <% include ../partials/head %>
+ <%- include('../partials/head'); -%>
  <link rel="stylesheet" type="text/css" href="/stylesheets/file-server.css">
 </head>
 
 <body>
 
-<% include ../partials/menu %> 
+<%- include('../partials/menu'); -%> 
 
 <div class="body">    
   <h1>File uploaded successfully!</h1>
   Link (click to download): <a id="link" href="/uploads/<%= file.name %>" download>https://zyrn.dev/uploads/<%= file.name %></a>
 </div>
 
-<% include ../partials/footer %>
+<%- include('../partials/footer'); -%>
 
 </body>
 
-<% include ../partials/script %>
+<%- include('../partials/script'); -%>
 
 </html>

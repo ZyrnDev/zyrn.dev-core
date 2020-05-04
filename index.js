@@ -1,11 +1,12 @@
 // Add Dependancies
+const fs            = require('fs');
+const path          = require('path');
 const express       = require('express');
 const bodyParser    = require("body-parser");
 const createError   = require('http-errors');
 const cors          = require('cors');
-const fs            = require('fs');
-const path          = require('path');
 const serveIndex    = require('serve-index');
+const compression   = require('compression');
 
 // Constants and global scoped variables
 const app = express();
@@ -13,10 +14,12 @@ global.config = JSON.parse(fs.readFileSync('settings.json', 'utf8'));
 global.database = require('./src/database.js');
 
 // Configure Express Settings
+app.use(compression());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600 }));
 app.use('/uploads', serveIndex(path.join(__dirname, 'public/uploads')));
 
 

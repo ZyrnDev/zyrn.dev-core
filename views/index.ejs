@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
- <% include partials/head %> 
+ <%- include('partials/head'); %> 
 </head>
 
 <body>
 
-<% include partials/menu %> 
+<%- include('partials/menu'); -%> 
 
 <div class="body">    
   <div class="container-fluid body">
@@ -25,10 +25,10 @@
   </div>
 </div>
 
-<% include partials/footer %>
+<%- include('partials/footer'); -%>
 
 </body>
 
-<% include partials/script %>
+<%- include('partials/script'); -%>
 
 </html>
