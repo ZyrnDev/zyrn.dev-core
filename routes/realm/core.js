@@ -6,7 +6,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/accounts', function (req, res) {
-    res.render("realm/index", { page: { title: "Realm Mules" } });
+    res.render('templates/default', { page: { title: "Realm Mules" }, content: { header: 'realm/index header', body: 'realm/index' } });
 });
 
 router.get('/accounts/:id', async function (req, res, next) {
@@ -14,7 +14,7 @@ router.get('/accounts/:id', async function (req, res, next) {
     if (!account) {
         return next();
     }
-    res.render("realm/edit", { page: { title: "Manage Account " }, account: account });
+    res.render('templates/centered', { page: { title: "Manage Account" }, content: { header: 'realm/edit header', body: 'realm/edit', footer: 'realm/edit footer' }, account: account });
 });
 
 async function getAccount(id) {

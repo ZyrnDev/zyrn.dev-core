@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<head>
+  <html lang="en">
+  <%- include('../partials/head'); -%>
+  <% if (content.header) { %>
+    <%- include('../' + content.header); -%>
+  <% } %>
+</head>
+
+<body>
+    
+    <%- include('../partials/menu'); -%> 
+    
+    <% if (content.body) { %>
+      <%- include('../' + content.body); -%>
+    <% } %>
+    
+    <%- include('../partials/footer'); -%>
+    
+</body>
+
+<% if (content.footer) { %>
+  <%- include('../' + content.footer); -%>
+<% } %>
+<%- include('../partials/script'); -%>
+
+</html>

@@ -1,0 +1,29 @@
+<script>
+    $("#edit-form").submit(function (event) {
+      event.preventDefault();
+      let id = <%= account.id %>;
+      jQuery.ajax({
+        url: "https://zyrn.dev/api/realm/accounts/" + id,
+        method: "PUT",
+        data: { id : id, guid: $('#edit-form input[name="guid"]').val(), password: $('#edit-form input[name="password"]').val()  },
+        dataType: "json"
+      }).done(function(data) {
+        console.log(data);
+      }).fail(function(xhr, message, error) {
+        console.log("Something went wrong while trying to update the account #" + id + "...");
+      });
+    });
+  
+    $("#delete-button").click(function (event) {
+      let id = <%= account.id %>;
+      jQuery.ajax({
+        url: "https://zyrn.dev/api/realm/accounts/" + id,
+        method: "DELETE",
+        dataType: "json"
+      }).done(function(data) {
+        alert("Account Deleted");
+      }).fail(function(xhr, message, error) {
+        console.log("Something went wrong while trying to delete the account #" + id + "...");
+      });
+    });
+  </script>

@@ -2,7 +2,7 @@ const express   = require('express');
 const router    = express.Router();
 
 router.get('/', function (req, res) {
-    res.render("index", { page: { title: "Home" } });
+    res.render('templates/centered', { page: { title: "Home" }, content: { body: 'index' } });
 });
 
 //Routes

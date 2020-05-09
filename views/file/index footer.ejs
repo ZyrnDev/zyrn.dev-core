@@ -1,0 +1,21 @@
+<script>
+    jQuery("#upload-file").change(function () {
+      // alert('Selected file: ' + this.value.replace(/.*[\/\\]/, ''));
+      if (this.value){
+        jQuery("#lbl-upload-file").text(this.value.replace(/.*[\/\\]/, ''));
+      } else {
+        jQuery("#lbl-upload-file").text("Choose File");
+      }
+    });
+    jQuery("#upload-form").submit(function (event) {
+      console.log(jQuery("#upload-file")[0].value);
+      if (!jQuery("#upload-file")[0].value) {
+        event.preventDefault();
+        let message = jQuery('<p class="message">Please choose a file to upload first</p>')
+        message.insertAfter(this);
+        setTimeout(function () {
+          message.remove();
+        }, 2500);
+      }
+    });
+</script>

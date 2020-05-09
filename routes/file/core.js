@@ -13,7 +13,7 @@ const path          = require('path');
 // const videos = ['mp4', 'm4p', 'm4v', 'gif', 'mkv', 'webm', 'mov', 'qt', 'flv', 'swf', 'avi', 'ogg', 'mpg', 'mp2', 'mpeg', 'mpe', 'mpv'];
             
 router.get('/', (req, res) => {
-    res.render("file/index", { page: { title: "Upload" } });
+    res.render('templates/centered', { page: { title: "Upload" }, content: { header: 'file/header', body: 'file/index', footer: 'file/index footer' } });
 });
 
 router.post('/', (req, res) => {
@@ -29,9 +29,9 @@ router.post('/', (req, res) => {
     });
     form.on('file', (name, file) => {
         if (file.name) {
-            res.render("file/success", { page: { title: "Success" }, file: file });     
+            res.render('templates/centered', { page: { title: "Success" }, content: { header: 'file/header', body: 'file/success' }, file: file });   
         } else  {
-            res.render("file/failure", { page: { title: "Failure" } });
+            res.render('templates/centered', { page: { title: "Failure" }, content: { header: 'file/header', body: 'file/failure' } });   
         }
     });
     form.on('error', function(err) {

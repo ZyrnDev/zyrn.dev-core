@@ -1,91 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <%- include('../partials/head'); -%>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script>const jQuery = $;//I don't know why but I seem to be losing my jQuery object somehow</script>
-  <style>
-    input[type=text] {
-      width: 100%;
-    }
-    #account {
-      padding: 1em;
-      text-align: center;
-    }
-    label {
-      font-size: 1.5em;
-    }
-  </style>
-</head>
-
-<body>
-
-<%- include('../partials/menu'); -%> 
-
-<div class="body">
-  <div class="container-fluid body">
-    <div class="row">
-      <div class="col-md"></div>  
-      <div class="col-md-4">
-        <h2><%= page.title %></h2>        
-        <div id="account">
-          <form id="edit-form">
-              <h2>ID: <%= account.id %></h2>
-              <label>Email:</label>
-              <br>
-              <input type="text" name="guid" placeholder="Email address or Steam ID" value="<%= account.guid %>">
-              <br>
-              <br>
-              <label>Password:</label>
-              <br>
-              <input type="text" name="password" placeholder="Only use this if the password has changed">
-              <br>
-              <input type="submit" value="Save" class="button">
-              <button id="delete-button" class="button">Delete</button>
-          </form>
-        </div>
-      </div>  
-      <div class="col-md"></div>  
-    </div>  
-  </div>
-
-  <%- include('../partials/footer'); -%>
-  
+<h2><%= page.title %></h2>        
+<div id="account">
+  <form id="edit-form">
+      <h2>ID: <%= account.id %></h2>
+      <label>Email:</label>
+      <br>
+      <input type="text" name="guid" placeholder="Email address or Steam ID" value="<%= account.guid %>">
+      <br>
+      <br>
+      <label>Password:</label>
+      <br>
+      <input type="text" name="password" placeholder="Only use this if the password has changed">
+      <br>
+      <input type="submit" value="Save" class="button">
+      <button id="delete-button" class="button">Delete</button>
+  </form>
 </div>
-
-</body>
-
-<script>
-  $("#edit-form").submit(function (event) {
-    event.preventDefault();
-    let id = <%= account.id %>;
-    jQuery.ajax({
-      url: "https://zyrn.dev/api/realm/accounts/" + id,
-      method: "PUT",
-      data: { id : id, guid: $('#edit-form input[name="guid"]').val(), password: $('#edit-form input[name="password"]').val()  },
-      dataType: "json"
-    }).done(function(data) {
-      console.log(data);
-    }).fail(function(xhr, message, error) {
-      console.log("Something went wrong while trying to update the account #" + id + "...");
-    });
-  });
-
-  $("#delete-button").click(function (event) {
-    let id = <%= account.id %>;
-    jQuery.ajax({
-      url: "https://zyrn.dev/api/realm/accounts/" + id,
-      method: "DELETE",
-      dataType: "json"
-    }).done(function(data) {
-      alert("Account Deleted");
-    }).fail(function(xhr, message, error) {
-      console.log("Something went wrong while trying to delete the account #" + id + "...");
-    });
-  });
-</script>
-
-<%- include('../partials/script'); -%>
-
-</html>
