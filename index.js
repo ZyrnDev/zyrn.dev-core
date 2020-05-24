@@ -78,4 +78,7 @@ app.use(function(err, req, res, next) {
     }
 });
 
-app.listen(global.config.port, () => console.log(`Server Listening at: http://localhost:${global.config.port}`));
+app.listen(global.config.port, function () {
+    console.log(`Server Listening at: http://localhost:${global.config.port}`);
+    require('opn')(`http://localhost:${global.config.port}`);
+});
