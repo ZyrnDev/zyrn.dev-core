@@ -27,46 +27,46 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
-    var results = [];
+// router.get('/:id', async (req, res) => {
+//     var results = [];
 
-    let accounts = await database.getAccountsByID(req.params.id);
-    let account;
-    if (accounts.length < 1) {
-        account = undefined;
-    } else {
-        account = accounts[0];
-    }
+//     let accounts = await database.getAccountsByID(req.params.id);
+//     let account;
+//     if (accounts.length < 1) {
+//         account = undefined;
+//     } else {
+//         account = accounts[0];
+//     }
 
-    if (account === undefined) {
-        res.json(results);
-        return;
-    }
+//     if (account === undefined) {
+//         res.json(results);
+//         return;
+//     }
 
-    async function realm_API_callback(error, response, body) {
-        //console.log(response, body)
-        if (response.statusCode == 200) {
-            parser.parseString(body, function (err, result) {
-                //console.log(result);
-                try { 
-                    results.push({accountID: response.request.headers.ID, status: 'Success', guid: response.request.headers.GUID, message: result.Chars.Account[0].Name[0], time: new Date().toISOString()});
-                } catch(err) {
-                    //console.log(error);
-                    results.push({accountID: response.request.headers.ID, status: 'Fail', guid: response.request.headers.GUID, message: body, time: new Date().toISOString()});
-                }
-            });
-        } else {
-            results.push({accountID: response.request.headers.ID, status: ('Fail: ' + response.statusCode), guid: response.request.headers.GUID, message: body, time: new Date().toISOString()});
-        }
+//     async function realm_API_callback(error, response, body) {
+//         //console.log(response, body)
+//         if (response.statusCode == 200) {
+//             parser.parseString(body, function (err, result) {
+//                 //console.log(result);
+//                 try { 
+//                     results.push({accountID: response.request.headers.ID, status: 'Success', guid: response.request.headers.GUID, message: result.Chars.Account[0].Name[0], time: new Date().toISOString()});
+//                 } catch(err) {
+//                     //console.log(error);
+//                     results.push({accountID: response.request.headers.ID, status: 'Fail', guid: response.request.headers.GUID, message: body, time: new Date().toISOString()});
+//                 }
+//             });
+//         } else {
+//             results.push({accountID: response.request.headers.ID, status: ('Fail: ' + response.statusCode), guid: response.request.headers.GUID, message: body, time: new Date().toISOString()});
+//         }
 
-        res.json(results);
-        for (let index = 0; index < results.length; index++) {
-            await database.addRefresh({id: results[index].accountID, status: results[index].status, message: results[index].message});
-        }
-    }
+//         res.json(results);
+//         for (let index = 0; index < results.length; index++) {
+//             await database.addRefresh({id: results[index].accountID, status: results[index].status, message: results[index].message});
+//         }
+//     }
 
-    request(makeParams(account), realm_API_callback);
-});
+//     request(makeParams(account), realm_API_callback);
+// });
 
 function makeURL(account) {
     if (account.guid.startsWith('steamworks:')) {
